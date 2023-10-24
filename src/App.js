@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import React from "react"
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Search from "./components/Search";
+import Routing from "./components/Routing";
 
 function App() {
+  let [darkmode,setDarkMode]=useState(false);
+  const toggleMode=()=>{
+    if(darkmode){
+      setDarkMode(darkmode=false);
+      document.body.style.backgroundColor="white";
+      document.body.style.color="black";
+    }
+    else{
+      setDarkMode(darkmode=true);
+      document.body.style.backgroundColor="black";
+      document.body.style.color="white";
+    }
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Navbar darkmode={darkmode} toggleMode={toggleMode}/>
+        <Search/>
+        <Routing/>
+        <Footer/>
     </div>
   );
 }
